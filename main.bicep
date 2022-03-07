@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param subscriptionId string = subscription().subscriptionId
 
 @description('Required. ResourceGroup location.')
-param location string = 'usgovvirginia'
+param location string = 'eastus2'
 
 @description('Required. ResourceGroup Name.')
 param targetResourceGroup string = 'rg-app-gateway-example'
@@ -70,7 +70,7 @@ param aseRoutes array = [
     name: 'aseRoute'
     addressPrefix: aseSubnetAddressPrefix
     hasBgpOverride: false
-    nextHopIpAddress: '172.0.100.4' 
+    nextHopIpAddress: '172.0.100.4'
     nextHopType: 'VirtualAppliance'
   }
 ]
@@ -91,7 +91,7 @@ param disableBgpRoutePropagation bool = true
 
 // If peering update this value
 @description('Required. Exisisting vNet Name for Peering.')
-param existingRemoteVirtualNetworkName string = 'vnet-hub-til-usgovvirginia-001'
+param existingRemoteVirtualNetworkName string = 'vnet-hub-til-eastus2-001'
 
 // If peering update this value
 @description('Required. Exisisting vNet Resource Group for Peering.')
@@ -106,7 +106,7 @@ param sslCertificateName string = 'cert'
 
 // DNS Zone Parameters 
 @description('DNS Zone Name')
-param dnsZoneName string = 'mikedzikowski.com'
+param dnsZoneName string = 'thevolk.xyz'
 
 @description('Hostnames for DNS')
 param hostnames array = [
@@ -180,7 +180,7 @@ param requestRoutingRuleType string = 'Basic'
 param webApplicationFirewall object = {
   enabled: true
   firewallMode: 'Detection'
-  ruleSetType: 'OWASP' 
+  ruleSetType: 'OWASP'
   ruleSetVersion: '3.2'
   disabledRuleGroups: []
   exclusions: []
@@ -204,7 +204,7 @@ param aseLbMode string = 'Web, Publishing'
   index // STARTING INDEX NUMBER
   appName // APP NAME 
 
-  EXAMPLE RESULT: tier3-t-environment-vnet-01 // tier3{appName}, t[environment], environment{function}, VNET{abbreviation}, 01{index} 
+  EXAMPLE RESULT: lvolk-t-environment-vnet-01 // lvolk{appName}, t[environment], environment{function}, VNET{abbreviation}, 01{index} 
   
 */
 
@@ -228,7 +228,7 @@ param index int = 1
 
 // APP NAME 
 
-param appName string = 'tier3'
+param appName string = 'lvolk'
 
 // RESOURCE NAME CONVENTIONS WITH ABBREVIATIONS
 
@@ -238,14 +238,14 @@ var gwUdrAddressNamingConvention = replace(names.outputs.resourceName, '[PH]', '
 var privateDNSZoneNamingConvention = asev3.outputs.dnssuffix
 var virtualNetworkNamingConvention = replace(names.outputs.resourceName, '[PH]', 'vnet')
 var managedIdentityNamingConvention = replace(names.outputs.resourceName, '[PH]', 'mi')
-var keyVaultNamingConvention= replace(names.outputs.resourceName, '[PH]', 'kv')
+var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kv')
 var aseSubnetNamingConvention = replace(names.outputs.resourceName, '[PH]', 'snet')
 var appGwSubnetNamingConvention = replace(names.outputs.resourceName, '[PH]', 'appgw-snet')
 var aseNamingConvention = replace(names.outputs.resourceName, '[PH]', 'ase')
 var appServicePlanNamingConvention = replace(names.outputs.resourceName, '[PH]', 'sp')
 var applicationGatewayNamingConvention = replace(names.outputs.resourceName, '[PH]', 'gw')
 var networkSecurityGroupNamingConvention = replace(names.outputs.resourceName, '[PH]', 'nsg')
-var appNamingConvention= replace(names.outputs.resourceName, '[PH]', 'web')
+var appNamingConvention = replace(names.outputs.resourceName, '[PH]', 'web')
 var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.us'
 var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.usgovcloudapi.net/secrets/${sslCertificateName}'
 
@@ -295,7 +295,7 @@ module appGwRouteTable 'modules/udr.bicep' = {
   name: 'appgw-udr-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
-    routes:appGwRoutes
+    routes: appGwRoutes
     disableBgpRoutePropagation: disableBgpRoutePropagation
     location: location
     udrName: aseUdrAddressNamingConvention
@@ -309,10 +309,10 @@ module aseRouteTable 'modules/udr.bicep' = {
   name: 'ase-udr-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
-    routes:aseRoutes
+    routes: aseRoutes
     disableBgpRoutePropagation: disableBgpRoutePropagation
     location: location
-    udrName: gwUdrAddressNamingConvention 
+    udrName: gwUdrAddressNamingConvention
   }
   dependsOn: [
     rg
@@ -323,7 +323,7 @@ module msi 'modules/managedIdentity.bicep' = {
   name: 'managed-identity-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
-    managedIdentityName:managedIdentityNamingConvention
+    managedIdentityName: managedIdentityNamingConvention
     location: location
   }
 }
@@ -342,7 +342,7 @@ module keyvault 'modules/keyVault.bicep' = if (buildKeyVault == true) {
   ]
 }
 
-module nsg 'modules/nsg.bicep' =  {
+module nsg 'modules/nsg.bicep' = {
   name: 'nsg-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
@@ -355,7 +355,7 @@ module nsg 'modules/nsg.bicep' =  {
   ]
 }
 
-module virtualnetwork 'modules/virtualNetwork.bicep' =  {
+module virtualnetwork 'modules/virtualNetwork.bicep' = {
   name: 'vnet-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
@@ -428,7 +428,7 @@ module asev3 'modules/appServiceEnvironment.bicep' = {
     aseVnetId: virtualnetwork.outputs.vNetId
     aseSubnetName: aseSubnetNamingConvention
     kind: aseKind
-    aseLbMode: aseLbMode 
+    aseLbMode: aseLbMode
   }
   dependsOn: [
     virtualnetwork

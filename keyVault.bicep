@@ -3,10 +3,10 @@ targetScope = 'subscription'
 // REQUIRED PARAMETERS
 
 @description('Required. Subscription GUID.')
-param subscriptionId string = 'f4972a61-1083-4904-a4e2-a790107320bf'
+param subscriptionId string = 'ca5dfa45-eb4e-4612-9ebd-06f6fc3bc996'
 
 @description('Required. ResourceGroup location.')
-param location string = 'usgovvirginia'
+param location string = 'eastus2' //'usgovvirginia'
 
 @description('Required. ResourceGroup Name.')
 param targetResourceGroup string = 'rg-app-gateway-example'
@@ -47,8 +47,7 @@ param index int = 1
 
 // APP NAME 
 
-param appName string = 'tier3'
-
+param appName string = 'lvolk'
 
 // Certificate
 /*
@@ -61,7 +60,7 @@ param appName string = 'tier3'
 */
 
 var managedIdentityNamingConvention = replace(names.outputs.resourceName, '[PH]', 'mi')
-var keyVaultNamingConvention= replace(names.outputs.resourceName, '[PH]', 'kv')
+var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kv')
 
 module rg 'modules/resourceGroup.bicep' = {
   name: 'resourceGroup-deployment-${deploymentNameSuffix}'
@@ -91,7 +90,7 @@ module msi 'modules/managedIdentity.bicep' = {
   name: 'managed-identity-deployment-${deploymentNameSuffix}'
   scope: resourceGroup(subscriptionId, targetResourceGroup)
   params: {
-    managedIdentityName:managedIdentityNamingConvention
+    managedIdentityName: managedIdentityNamingConvention
     location: location
   }
 }
