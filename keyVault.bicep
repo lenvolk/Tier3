@@ -60,7 +60,7 @@ param appName string = 'lvolk'
 */
 
 var managedIdentityNamingConvention = replace(names.outputs.resourceName, '[PH]', 'mi')
-var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kvlv')
+var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kv38')
 
 module rg 'modules/resourceGroup.bicep' = {
   name: 'resourceGroup-deployment-${deploymentNameSuffix}'
