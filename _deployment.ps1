@@ -8,6 +8,8 @@ Get-AzSubscription -SubscriptionName "LabSub" | Select-AzSubscription
 # KeyVault
 New-AzSubscriptionDeployment -Location 'eastus2' -TemplateFile .\keyVault.bicep
 
+# App GW
+New-AzSubscriptionDeployment -Name Tier3Deployment -TemplateFile .\main.bicep -Location 'eastus2'
 
 
 
