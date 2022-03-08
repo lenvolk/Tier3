@@ -238,7 +238,7 @@ var gwUdrAddressNamingConvention = replace(names.outputs.resourceName, '[PH]', '
 var privateDNSZoneNamingConvention = asev3.outputs.dnssuffix
 var virtualNetworkNamingConvention = replace(names.outputs.resourceName, '[PH]', 'vnet')
 var managedIdentityNamingConvention = replace(names.outputs.resourceName, '[PH]', 'mi')
-var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kv')
+var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kvlv')
 var aseSubnetNamingConvention = replace(names.outputs.resourceName, '[PH]', 'snet')
 var appGwSubnetNamingConvention = replace(names.outputs.resourceName, '[PH]', 'appgw-snet')
 var aseNamingConvention = replace(names.outputs.resourceName, '[PH]', 'ase')
@@ -249,7 +249,7 @@ var appNamingConvention = replace(names.outputs.resourceName, '[PH]', 'web')
 // var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.us'
 var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.net'
 // var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.usgovcloudapi.net/secrets/${sslCertificateName}'
-var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.azure.net/certificates/${sslCertificateName}'
+var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.azure.net/secrets/${sslCertificateName}' //certificates/${sslCertificateName}
 
 var aseSubnet = [
   {
