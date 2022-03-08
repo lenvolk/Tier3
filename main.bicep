@@ -89,17 +89,17 @@ param appGwRoutes array = [
 @description('Required. Route Table. Select to true, to prevent the propagation of on-premises routes to the network interfaces in associated subnets')
 param disableBgpRoutePropagation bool = true
 
-// If peering update this value
-@description('Required. Exisisting vNet Name for Peering.')
-param existingRemoteVirtualNetworkName string = 'vnet-hub-til-eastus2-001'
+// // If peering update this value
+// @description('Required. Exisisting vNet Name for Peering.')
+// param existingRemoteVirtualNetworkName string = 'vnet-hub-til-eastus2-001'
 
-// If peering update this value
-@description('Required. Exisisting vNet Resource Group for Peering.')
-param existingRemoteVirtualNetworkResourceGroupName string = 'rg-hub-til-001'
+// // If peering update this value
+// @description('Required. Exisisting vNet Resource Group for Peering.')
+// param existingRemoteVirtualNetworkResourceGroupName string = 'rg-hub-til-001'
 
 // If peering update this value 
 @description('Required. Setup Peering.')
-param usePeering bool = true
+param usePeering bool = false
 
 // Application Gateway Parameters 
 param sslCertificateName string = 'cert'
