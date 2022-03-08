@@ -246,8 +246,10 @@ var appServicePlanNamingConvention = replace(names.outputs.resourceName, '[PH]',
 var applicationGatewayNamingConvention = replace(names.outputs.resourceName, '[PH]', 'gw')
 var networkSecurityGroupNamingConvention = replace(names.outputs.resourceName, '[PH]', 'nsg')
 var appNamingConvention = replace(names.outputs.resourceName, '[PH]', 'web')
-var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.us'
-var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.usgovcloudapi.net/secrets/${sslCertificateName}'
+// var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.us'
+var webAppFqdnNamingConvention = '${appNamingConvention}.${aseNamingConvention}.appserviceenvironment.net'
+// var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.usgovcloudapi.net/secrets/${sslCertificateName}'
+var keyVaultSecretIdNamingConvention = 'https://${keyVaultNamingConvention}.vault.azure.net/certificates/${sslCertificateName}'
 
 var aseSubnet = [
   {
