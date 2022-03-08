@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param subscriptionId string = subscription().subscriptionId
 
 @description('Required. ResourceGroup location.')
-param location string = 'eastus2'
+param location string = 'eastus'
 
 @description('Required. ResourceGroup Name.')
 param targetResourceGroup string = 'rg-app-gateway-example'
@@ -91,7 +91,7 @@ param disableBgpRoutePropagation bool = true
 
 // If peering update this value
 @description('Required. Exisisting vNet Name for Peering.')
-param existingRemoteVirtualNetworkName string = 'vnet-hub-til-eastus2-001'
+param existingRemoteVirtualNetworkName string = 'vnet-hub-til-eastus-001'
 
 // If peering update this value
 @description('Required. Exisisting vNet Resource Group for Peering.')

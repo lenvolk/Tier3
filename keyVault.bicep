@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param subscriptionId string = 'ca5dfa45-eb4e-4612-9ebd-06f6fc3bc996'
 
 @description('Required. ResourceGroup location.')
-param location string = 'eastus2' //'usgovvirginia'
+param location string = 'eastus' //'usgovvirginia'
 
 @description('Required. ResourceGroup Name.')
 param targetResourceGroup string = 'rg-app-gateway-example'
@@ -60,7 +60,7 @@ param appName string = 'lvolk'
 */
 
 var managedIdentityNamingConvention = replace(names.outputs.resourceName, '[PH]', 'mi')
-var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kv')
+var keyVaultNamingConvention = replace(names.outputs.resourceName, '[PH]', 'kvlv')
 
 module rg 'modules/resourceGroup.bicep' = {
   name: 'resourceGroup-deployment-${deploymentNameSuffix}'
